@@ -1808,7 +1808,12 @@ class InteractiveShell(SingletonConfigurable):
                             detail_level=detail_level
                 )
             else:
-                raise KeyError(oname)
+                # raise KeyError(oname)
+                # Instead of raising an exception, return recovery suggestion alongside original 'query', both will get displayed in Juno's docstring/inspect popup
+                return {
+                    'text/plain': 'Nothing found :(\n\nPerhaps the object has not been declared/imported yet? Try running your code and check again.',
+                    'oname': oname,
+                }
 
     #-------------------------------------------------------------------------
     # Things related to history management

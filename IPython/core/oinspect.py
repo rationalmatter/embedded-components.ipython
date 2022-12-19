@@ -588,6 +588,7 @@ class Inspector(Colorable):
         _mime = {
             'text/plain': [],
             'text/html': '',
+            'oname': oname, # Also include the `oname`, which Juno will display in the docstring/inspect popup as original 'query'
         }
 
         def append_field(bundle, title:str, key:str, formatter=None):
