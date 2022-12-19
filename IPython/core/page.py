@@ -243,21 +243,25 @@ def page(data, start=0, screen_lines=0, pager_cmd=None):
     Pager is dispatched via the `show_in_pager` IPython hook.
     If no hook is registered, `pager_page` will be used.
     """
-    # Some routines may auto-compute start offsets incorrectly and pass a
-    # negative value.  Offset to 0 for robustness.
-    start = max(0, start)
+    # # Some routines may auto-compute start offsets incorrectly and pass a
+    # # negative value.  Offset to 0 for robustness.
+    # start = max(0, start)
 
-    # first, try the hook
-    ip = get_ipython()
-    if ip:
-        try:
-            ip.hooks.show_in_pager(data, start=start, screen_lines=screen_lines)
-            return
-        except TryNext:
-            pass
+    # # first, try the hook
+    # ip = get_ipython()
+    # if ip:
+    #     try:
+    #         ip.hooks.show_in_pager(data, start=start, screen_lines=screen_lines)
+    #         return
+    #     except TryNext:
+    #         pass
     
-    # fallback on default pager
-    return pager_page(data, start, screen_lines, pager_cmd)
+    # # fallback on default pager
+    # return pager_page(data, start, screen_lines, pager_cmd)
+    # Juno doesn't display Jupyter's Pager — redirect data to the cell output instead:
+    if isinstance(data, dict):
+        data = data['text/plain']
+    print(data)
 
 
 def page_file(fname, start=0, pager_cmd=None):
