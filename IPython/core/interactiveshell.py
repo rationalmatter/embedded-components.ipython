@@ -2553,7 +2553,7 @@ class InteractiveShell(SingletonConfigurable):
     # # use piped system by default, because it is better behaved
     # system = system_piped
     # Disable shell commands in Juno, as system() calls won't work anyway.
-    system = lambda *args: print(' Shell commands are disabled in Juno.', file=sys.stderr)
+    system = lambda *args: print(' System commands are not supported in Juno (yet)', file=sys.stderr)
 
     def getoutput(self, cmd, split=True, depth=0):
         """Get output (possibly including stderr) from a subprocess.
